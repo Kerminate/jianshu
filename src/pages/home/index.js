@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import Topic from './components/Topic'
 import List from './components/List'
 import Recommend from './components/Recommend'
 import Writer from './components/Writer'
+import { getHomeData } from '../../store/actionCreators/home'
 import {
   HomeWrapper,
   HomeLeft,
@@ -10,6 +13,10 @@ import {
 } from './style'
 
 class Home extends Component {
+  componentDidMount () {
+    this.props.initHomeData()
+  }
+
   render () {
     return (
       <HomeWrapper>
@@ -27,4 +34,16 @@ class Home extends Component {
   }
 }
 
-export default Home
+Home.propTypes = {
+  initHomeData: PropTypes.func
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    initHomeData () {
+      dispatch(getHomeData())
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Home)
