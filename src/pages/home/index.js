@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Topic from './components/Topic'
@@ -13,7 +13,7 @@ import {
   BackTop
 } from './style'
 
-class Home extends Component {
+class Home extends PureComponent {
   componentDidMount () {
     this.props.initHomeInfo()
     this.bindEvents()
