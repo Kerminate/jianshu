@@ -10,3 +10,6 @@ export const CHANGE_PAGE = 'CHANGE_PAGE'
 export const CHANGE_HOME_DATA = 'CHANGE_HOME_DATA'
 export const ADD_ARTICLE_LIST = 'ADD_ARTICLE_LIST'
 export const TOGGLE_SCROLL_TOP = 'TOGGLE_SCROLL_TOP'
+
+// detail
+export const CHANGE_DETAIL = 'CHANGE_DETAIL'
