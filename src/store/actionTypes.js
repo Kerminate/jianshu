@@ -13,3 +13,7 @@ export const TOGGLE_SCROLL_TOP = 'TOGGLE_SCROLL_TOP'
 
 // detail
 export const CHANGE_DETAIL = 'CHANGE_DETAIL'
+
+// login
+export const CHANGE_LOGIN = 'CHANGE_LOGIN'
+export const LOGOUT = 'LOGOUT'

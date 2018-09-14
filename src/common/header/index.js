@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { searchFocus, searchBlur, getList, mouseEnter, mouseLeave, changePage } from '../../store/actionCreators/header'
+import { logout } from '../../store/actionCreators/login'
 import {
   HeaderWrapper,
   Logo,
@@ -53,7 +54,7 @@ class Header extends PureComponent {
   }
 
   render () {
-    const { focused, handleInputFocus, handleInputBlur, list } = this.props
+    const { focused, handleInputFocus, handleInputBlur, list, loginStatus, logout } = this.props
     return (
       <HeaderWrapper>
         <Link to='/'>
@@ -62,7 +63,11 @@ class Header extends PureComponent {
         <Nav>
           <NavItem className='left active'>首页</NavItem>
           <NavItem className='left'>下载App</NavItem>
-          <NavItem className='right'>登录</NavItem>
+          {
+            loginStatus
+              ? <NavItem className='right' onClick={logout}>退出</NavItem>
+              : <Link to='/login'><NavItem className='right'>登录</NavItem></Link>
+          }
           <NavItem className='right'>
             <i className='iconfont'>&#xe636;</i>
           </NavItem>
@@ -99,12 +104,14 @@ Header.propTypes = {
   list: PropTypes.object,
   page: PropTypes.number,
   mouseIn: PropTypes.bool,
+  loginStatus: PropTypes.bool,
   totalPage: PropTypes.number,
   handleMouseEnter: PropTypes.func,
   handleMouseLeave: PropTypes.func,
   handleChangePage: PropTypes.func,
   handleInputFocus: PropTypes.func,
-  handleInputBlur: PropTypes.func
+  handleInputBlur: PropTypes.func,
+  logout: PropTypes.func
 }
 
 const mapStateToProps = (state) => {
@@ -113,7 +120,8 @@ const mapStateToProps = (state) => {
     list: state.getIn(['header', 'list']),
     page: state.getIn(['header', 'page']),
     totalPage: state.getIn(['header', 'totalPage']),
-    mouseIn: state.getIn(['header', 'mouseIn'])
+    mouseIn: state.getIn(['header', 'mouseIn']),
+    loginStatus: state.getIn(['login', 'loginStatus'])
   }
 }
 
@@ -143,6 +151,10 @@ const mapDispatchToProps = (dispatch) => {
       } else {
         dispatch(changePage(1))
       }
+    },
+    logout () {
+      console.log('logout')
+      dispatch(logout())
     }
   }
 }
