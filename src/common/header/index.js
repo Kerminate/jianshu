@@ -88,10 +88,12 @@ class Header extends PureComponent {
           </SearchWrapper>
         </Nav>
         <Addition>
-          <Button className='writting'>
-            <i className='iconfont'>&#xe615;</i>
+          <Link to='/write'>
+            <Button className='writting'>
+              <i className='iconfont'>&#xe615;</i>
             写文章
-          </Button>
+            </Button>
+          </Link>
           <Button className='reg'>注册</Button>
         </Addition>
       </HeaderWrapper>
